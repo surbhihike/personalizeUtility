@@ -9,6 +9,7 @@ import org.apache.spark.graphx._
 import com.metreta.spark.orientdb.connector._
 import com.metreta.spark.orientdb.connector._
 import com.orientechnologies.orient.core.intent._
+
 import com.tinkerpop.blueprints.impls.orient._
 import scala.collection.JavaConversions._
 import com.tinkerpop.blueprints.Vertex;
@@ -150,54 +151,6 @@ val accumValue = sc.broadcast(accum.value)
  
 }
 }
-//val graph = Graph(userRdd, edgeRdd, defaultUser)      
-//val out = graph.triplets.repartition(1)
-//
-//case class graph_user_string(from_user : String)
-//
-//out.mapPartitions(x => {
-//val props = new java.util.HashMap[String,Any]();
-//val vertexToMap = new java.util.HashMap[graph_user_string, OrientVertex]
-//// Open the OrientDB database instance
-//val factory = new OrientGraphFactory("remote:10.0.1.212/graph_poc", "root", "abc");
-//factory.declareIntent(new OIntentMassiveInsert());
-//val graph1 = factory.getNoTx();
-//val y = x.map ( vert=> {
-//  val srcKey = graph_user_string(vert.srcAttr.from_user)
-//  var srcVertex = vertexToMap.get(srcKey)
-//if(srcVertex == null) {
-//props.+=(("from_user", vert.srcAttr.from_user))
-//props.+=(("os", vert.srcAttr.os))
-//props.+=(("dev_type", vert.srcAttr.dev_type))
-//props.+=(("reg_time", vert.srcAttr.reg_time))
-//props.+=(("no_h2h", vert.srcAttr.no_h2h))
-//props.+=(("no_tl", vert.srcAttr.no_tl))
-//srcVertex = graph1.addVertex("class:graph_user", props); 
-//vertexToMap.+=((srcKey, srcVertex))
-//}
-//
-//  val dstKey = graph_user_string(vert.dstAttr.from_user)
-//var dstVertex = vertexToMap.get(dstKey) 
-//if(dstVertex == null) {
-//props.+=(("from_user", vert.dstAttr.from_user))
-//props.+=(("os", vert.dstAttr.os))
-//props.+=(("dev_type", vert.dstAttr.dev_type))
-//props.+=(("reg_time", vert.dstAttr.reg_time))
-//props.+=(("no_h2h", vert.dstAttr.no_h2h))
-//props.+=(("no_tl", vert.dstAttr.no_tl))
-//dstVertex = graph1.addVertex("class:graph_user", props);
-//vertexToMap.+=((dstKey, dstVertex))
-//}
-//val e1 = srcVertex.addEdge("graph_edge", dstVertex, "class:graph_edge", null, "from_user", vert.attr.from_user,"to_user", vert.attr.to_user, "no_h2h", java.lang.Long.valueOf(vert.attr.no_h2h),"no_likes", java.lang.Long.valueOf(vert.attr.no_likes),"no_cbg", java.lang.Long.valueOf(vert.attr.no_cbg))
-//1
-// })
-// y
-// }).collect
-//
-//}
-// 
-//} 
-
 
 /*
  * Allows a mutable HashMap[String, Int] to be used as an accumulator in Spark.
